@@ -274,7 +274,7 @@ public class FlinkPravegaReader<T>
 
             final Function<EventRead<T>, T> deserFunc = this.deserializationSchema instanceof PravegaDeserializationSchema ?
                     ((PravegaDeserializationSchema<T>) deserializationSchema)::extractEvent :
-                    (eventRead) -> eventRead.getEvent();
+                    EventRead::getEvent;
 
             // main work loop, which this task is running
             while (this.running) {
